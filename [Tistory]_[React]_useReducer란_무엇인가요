@@ -1,0 +1,231 @@
+**Date**  
+2025. 7. 3. 23:52
+
+**Blog**  
+Tistory
+
+**Summary**  
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-ke-mobileStyle="widthOrigin" data-origin-width="264" data-origin-height="191"><span data-url="https://blog.kakaocdn.net/dn/cuflcY/btsO4s0mZ4o/0MiM4ERUHyKiGUF9ZMta6K/img.jpg" data-phocus="https://blog.kakaocdn.net/dn/cuflcY/btsO4s0mZ4o/0MiM4ERUHyKiGUF9ZMta6K/img.jpg"><img src="https://blog.kakaocdn.net/dn/cuflcY/btsO4s0mZ4o/0MiM4ERUHyKiGUF9ZMta6K/img.jpg" srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcuflcY%2FbtsO4s0mZ4o%2F0MiM4ERUHyKiGUF9ZMta6K%2Fimg.jpg" onerror="this.onerror=null; this.src='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png'; this.srcset='//t1.daumcdn.net/tistory_admin/static/images/no-image-v1.png';" loading="lazy" width="264" height="191" data-origin-width="264" data-origin-height="191"/></span></figure>
+</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">React에서 상태를 관리할 때 대부분<span>&nbsp;</span>useState로 시작한다. 간단한 상태라면 이걸로 충분할 수 있다. 예를 들어 숫자 카운트를 증가시키거나 입력 필드를 제어할 때 말이다.</p>
+<p style="color: #000000; text-align: start;" data-end="367" data-start="299" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-end="367" data-start="299" data-ke-size="size16">하지만 앱이 커지고 상태가<span>&nbsp;</span><b>서로 얽히고설키는</b><span>&nbsp;</span>상황이 오면 얘기가 달라진다.</p>
+<p style="color: #000000; text-align: start;" data-end="367" data-start="299" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-end="367" data-start="299" data-ke-size="size16">예를 들어 이런 질문이 떠오르게 된다.</p>
+<blockquote style="color: #000000; text-align: start;" data-end="498" data-start="369" data-ke-style="style1">
+<ul style="list-style-type: disc;" data-end="498" data-start="371" data-ke-list-type="disc">
+<li data-end="414" data-start="371">버튼 하나를 눌렀을 때 어떤 상태는 바뀌고 어떤 상태는 유지돼야 할까?</li>
+<li data-end="461" data-start="417">여러 조건(if/switch)마다 상태를 바꾸려면 코드가 너무 복잡한데?</li>
+<li data-end="498" data-start="464">이 상태 업데이트... 나중에 유지보수하기 어렵지 않을까?</li>
+</ul>
+</blockquote>
+<p style="color: #000000; text-align: start;" data-end="531" data-start="500" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-end="531" data-start="500" data-ke-size="size16">이럴 때 등장하는 게 바로<span>&nbsp;</span>useReducer이다!</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<blockquote data-ke-style="style2">useReducer란?</blockquote>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">useReducer는 <b>상태(state)</b>와 <b>업데이트 로직(dispatch + reducer)</b>를 분리해서 관리할 수 있도록 도와주는 React의 Hook이다.</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">Redux와 매우 유사한 방식으로 동작하며,<span>&nbsp;</span><b>복잡한 상태 전환 로직을 명확하게 분리</b>할 수 있다는 장점이 있다.</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<pre class="javascript" style="color: #000000; text-align: start;" data-ke-language="javascript"><code>// 사용 방법
+const [state, dispatch] = useReducer(reducer, initialState);</code></pre>
+<table style="letter-spacing: 0px; color: #000000; border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft" data-ke-style="style12">
+<tbody>
+<tr>
+<td>구성 요소</td>
+<td><span style="background-color: #9b9b9b; color: #ffffff; text-align: start;">설명</span></td>
+</tr>
+<tr>
+<td>state</td>
+<td>현재 상태값</td>
+</tr>
+<tr>
+<td>dispatch</td>
+<td>상태를 업데이트하기 위한 함수</td>
+</tr>
+<tr>
+<td>reducer</td>
+<td>액션에 따라 상태를 변경하는 로직</td>
+</tr>
+<tr>
+<td>initialState</td>
+<td>초기 상태값</td>
+</tr>
+</tbody>
+</table>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16"><span style="color: #000000; text-align: start;">여기서 중요한 건, 상태(state)를 직접 바꾸지 않고, <b>액션(action)</b>을 통해 간접적으로 바꾼다는 점이다.</span><br /><span style="color: #000000; text-align: start;"></span></p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<blockquote data-ke-style="style2">useReducer는 언제 쓰면 좋을까?</blockquote>
+<ul style="list-style-type: disc; color: #000000; text-align: start;" data-ke-list-type="disc">
+<li>상태의<span>&nbsp;</span><b>전환 로직이 복잡</b>할 때 (예 : if나<span>&nbsp;</span>switch문이 많을 때)</li>
+<li>상태가 여러 개로 나뉘고 서로<span>&nbsp;</span><b>의존성</b>이 있을 때</li>
+<li>상태 업데이트를 한 곳에<span>&nbsp;</span><b>집중</b>시키고 싶을 때</li>
+<li>Redux<span>&nbsp;</span>스타일로 상태를 관리하고 싶을 때</li>
+</ul>
+<p data-ke-size="size16">이러한 상황 속에서 useReducer로 구조를 잡게 되면 상태 관리에 도움이 될 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<blockquote data-ke-style="style2">예제: 할 일(ToDo) 리스트 만들기</blockquote>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">예제를 통해서 useReducer를 제대로 이해해보자. 이를 위해 할 일 리스트를 만드는 예제를 가져왔다.</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16"><b>1) 기능 요약</b></p>
+<pre class="hsp" style="color: #000000; text-align: start;"><code>  추가: input에 값을 입력하고 버튼 클릭 &rarr; 리스트에 추가
+  토글: 완료 / 미완료 상태 토글
+  삭제: 항목 삭제
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2) 코드</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="javascript" style="color: #000000; text-align: start;"><code>import React, { useReducer, useState } from 'react';
+
+// 1. 액션 타입 모음
+const ACTIONS = {
+  ADD: 'add-todo',
+  TOGGLE: 'toggle-todo',
+  DELETE: 'delete-todo',
+};
+
+// 2. 리듀서 함수
+function reducer(todos, action) {
+  switch (action.type) {
+    case ACTIONS.ADD:
+      return [
+        ...todos,
+        { id: Date.now(), name: action.payload.name, complete: false },
+      ];
+    case ACTIONS.TOGGLE:
+      return todos.map((todo) =&gt;
+        todo.id === action.payload.id
+          ? { ...todo, complete: !todo.complete }
+          : todo
+      );
+    case ACTIONS.DELETE:
+      return todos.filter((todo) =&gt; todo.id !== action.payload.id);
+    default:
+      return todos;
+  }
+}
+
+// 3. 메인 컴포넌트
+export default function TodoApp() {
+  const [todos, dispatch] = useReducer(reducer, []);
+  const [input, setInput] = useState('');
+
+  const handleAdd = () =&gt; {
+    if (input.trim() === '') return;
+    dispatch({ type: ACTIONS.ADD, payload: { name: input } });
+    setInput('');
+  };
+
+  return (
+    &lt;div style={{ padding: 20 }}&gt;
+      &lt;h2&gt;  ToDo 리스트&lt;/h2&gt;
+      &lt;input
+        value={input}
+        onChange={(e) =&gt; setInput(e.target.value)}
+        placeholder="할 일을 입력하세요"
+      /&gt;
+      &lt;button onClick={handleAdd}&gt;추가&lt;/button&gt;
+
+      &lt;ul&gt;
+        {todos.map((todo) =&gt; (
+          &lt;li key={todo.id} style={{ marginTop: 10 }}&gt;
+            &lt;span
+              style={{
+                textDecoration: todo.complete ? 'line-through' : 'none',
+                marginRight: 10,
+              }}
+            &gt;
+              {todo.name}
+            &lt;/span&gt;
+            &lt;button
+              onClick={() =&gt;
+                dispatch({ type: ACTIONS.TOGGLE, payload: { id: todo.id } })
+              }
+            &gt;
+              {todo.complete ? '되돌리기' : '완료'}
+            &lt;/button&gt;
+            &lt;button
+              onClick={() =&gt;
+                dispatch({ type: ACTIONS.DELETE, payload: { id: todo.id } })
+              }
+            &gt;
+              삭제
+            &lt;/button&gt;
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16"><b>3) 코드 설명</b></p>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">(1) reducer<span>&nbsp;</span>함수</p>
+<pre id="code_1751553419062" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>function reducer(state, action) {
+  switch (action.type) {
+    ...
+  }
+}</code></pre>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>reducer<span style="color: #000000; text-align: start;">는 현재 상태와 액션을 받아서 새로운 상태를 반환하는<span>&nbsp;</span></span><b>순수 함수</b>이다.</li>
+<li><span style="color: #000000; text-align: start;">어떤 액션을 보냈는지에 따라 상태를 바꿔준다.</span></li>
+<li>reducer<span style="color: #000000; text-align: start;">는 상태를 직접 바꾸지 않고, 기존 상태를 복사해서 새로운 상태를 리턴한다.</span></li>
+</ul>
+<p style="color: #000000; text-align: start;" data-ke-size="size16">(2) dispatch</p>
+<pre id="code_1751553423300" class="javascript" data-ke-language="javascript" data-ke-type="codeblock"><code>dispatch({ type: ACTIONS.ADD, payload: { name: input } });</code></pre>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>dispatch는 상태를 바꾸고 싶다는 <b>요청(액션)</b>을 보내는 함수입니다.</li>
+<li>실제로 상태를 바꾸는 건<span>&nbsp;</span>reducer입니다.</li>
+<li>상태를 직접 변경하지 않고, dispatch({ type, payload })를 통해 요청만 보낸다.</li>
+<li style="color: #000000;" data-end="4355" data-start="4312">type은 어떤 동작인지 명시,<span>&nbsp;</span>payload는 필요한 데이터 전달</li>
+</ul>
+<p data-ke-size="size16">&nbsp;</p>
+<blockquote data-ke-style="style2">요약</blockquote>
+<table style="color: #000000; text-align: start; border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft" data-ke-style="style12">
+<tbody>
+<tr>
+<td>개념</td>
+<td><span style="background-color: #9b9b9b; color: #ffffff; text-align: start;">의미</span></td>
+</tr>
+<tr>
+<td>useState</td>
+<td>간단한 상태 관리에 적합</td>
+</tr>
+<tr>
+<td>useReducer</td>
+<td>복잡한 상태 전환과 구조적인 관리에 적합</td>
+</tr>
+<tr>
+<td>reducer</td>
+<td>상태를 어떻게 바꿀지를 정의하는 함수</td>
+</tr>
+<tr>
+<td>dispatch</td>
+<td>상태를 바꿔달라고 요청하는 트리거 함수</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<blockquote data-ke-style="style2">마무리</blockquote>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">상태 관리가 복잡해질수록, 코드가 점점 지저분해지고 버그도 늘어나게 된다.</p>
+<p data-ke-size="size16">이럴 때<span>&nbsp;</span>useReducer는<span>&nbsp;</span><b>명확한 흐름과 구조</b>를 만들어주는 훌륭한 도구가 되어줄 것이다.</p>
+<p style="color: #000000; text-align: start;" data-end="367" data-start="225" data-ke-size="size16">&nbsp;</p>
+
+**Link**  
+https://pangil-log.tistory.com/378
